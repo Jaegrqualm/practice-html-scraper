@@ -1,0 +1,8 @@
+##README
+
+This is a simple HTML scraper written in python.
+Currently, it has two URLs hardcoded, one for distrowatch.com and the other for the top 100 distros at distrowatch.com.
+
+The aim is to collect the package versions on the pages of the top 100 distros.
+Output is a comma-delimited .csv file that is recognizable to most any excel-style program.
+The data it outputs is very poorly formatted, and has a lot of extra cells where they shouldn't be, thanks to irregular formatting on distrowatch's part.
