@@ -10,30 +10,41 @@ f.close()
 
 #get the data in the right order
 package_info = []
-for x in range(len(distro_info[0])):
+for x in range(len(distro_info[0])-3):
 	temp = []
-	for y in range(len(distro_info)):
-		temp.append(distro_info[y][x])
+	for y in range(len(distro_info)-1):
+		temp.append(distro_info[y+1][x+3])
 	
 	package_info.append(temp)
 	
+
 #write the values as ordinal integers
+count = 0
+pairs = {}
 for x in package_info:
 	setx = set(x)
 	sorted_setx = sorted(setx)
 	
-	pairs = {}
+	setx.clear()
+	
 	i=0
 	for y in sorted_setx:
-		pairs[i] = y
+		pairs[y] = i
 		i+=1
+		
 	print(pairs)
-	
-	for n in range(len(distro_info[0])):
-		for m in range(len(distro_info) - 1):
-			distro_info[m+1][n] = pairs[distro.info[m+1][n]]
+	for n in range(len(distro_info[0])-1):
+		#print(distro_info[n+3])
+		distro_info[n+1][count+3] = pairs[distro_info[n+1][count+3]]
+		
+	pairs.clear()
+	count+=1
 	
 	
 f = open('/home/roger/Documents/python/distrowatchdata.csv','w')	
+for x in distro_info:
+	for y in x:
+		f.write(str(y) + ',')
+	f.write('\n')
 
-		
+f.close()

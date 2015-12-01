@@ -2,7 +2,7 @@
 
 This is a simple HTML scraper written in python.
 Currently, it has two URLs hardcoded, one for distrowatch.com and the other for the top 100 distros at distrowatch.com.
-directories are also hardcoded, of which there is currently one.
+Directories and files are also hardcoded.
 
 The aim is to collect the package versions on the pages of the top 100 distros.
 Output is a comma-delimited .csv file that is recognizable to most any excel-style program.
