@@ -1,5 +1,5 @@
 ##README
-
+ 
 This is a simple HTML scraper written in python.
 Currently, it has two URLs hardcoded, one for distrowatch.com and the other for the top 100 distros at distrowatch.com.
 Directories and files are also hardcoded.
