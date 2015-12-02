@@ -1,3 +1,4 @@
+from copy import deepcopy
 #change the version numbers into ordinal integers.
 #data currently requires manual fixing before using this.
 
@@ -10,18 +11,30 @@ f.close()
 
 #get the data in the right order
 package_info = []
-for x in range(len(distro_info[0])-3):
+count = 0
+
+for x in range(len(distro_info[0])):
 	temp = []
-	for y in range(len(distro_info)-1):
-		temp.append(distro_info[y+1][x+3])
+	count+=1
+	#count2=0
+	for y in range(len(distro_info)):
+		temp.append(distro_info[y][x])
+		#count2+=1
+		#print(count2)
+	#print (temp)
+
+	#print (count)
 	
 	package_info.append(temp)
 	
 
 #write the values as ordinal integers
 count = 0
-pairs = {}
+pairs=[]
 for x in package_info:
+
+	pair = {}
+	
 	setx = set(x)
 	sorted_setx = sorted(setx)
 	
@@ -29,22 +42,27 @@ for x in package_info:
 	
 	i=0
 	for y in sorted_setx:
-		pairs[y] = i
+		pair[y] = i
 		i+=1
+	pairs.append(deepcopy(pair))
+	pair.clear()
 		
-	print(pairs)
-	for n in range(len(distro_info[0])-1):
-		#print(distro_info[n+3])
-		distro_info[n+1][count+3] = pairs[distro_info[n+1][count+3]]
+for m in range(len(distro_info[0])):
+	#print(pairs[m])
+	for n in range(len(distro_info)):
+		#print(pairs[n])
+		distro_info[n][m] = pairs[m][distro_info[n][m]]
+	
+
+
 		
-	pairs.clear()
-	count+=1
+
 	
 	
 f = open('/home/roger/Documents/python/distrowatchdata.csv','w')	
 for x in distro_info:
 	for y in x:
-		f.write(str(y) + ',')
+		f.write(','+str(y))
 	f.write('\n')
 
 f.close()
